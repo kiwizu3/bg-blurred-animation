@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glowing Blob Animation Example</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes floatBlob1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(60px, -40px) scale(1.1); }
+      50%  { transform: translate(0px, 60px) scale(0.9); }
+      75%  { transform: translate(-40px, 30px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    @keyframes floatBlob2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      25%  { transform: translate(-50px, 50px) scale(1.15); }
+      50%  { transform: translate(30px, -30px) scale(0.95); }
+      75%  { transform: translate(-60px, -20px) scale(1.05); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .glow-bg-animation {
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .glow-bg-animation::before,
+    .glow-bg-animation::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 9999px;
+      filter: blur(120px);
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-bg-animation::before {
+      background: radial-gradient(circle, #D96EFD, #5023C9);
+      top: 10%;
+      left: 10%;
+      animation: floatBlob1 12s ease-in-out infinite;
+    }
+
+    .glow-bg-animation::after {
+      background: radial-gradient(circle, #00F0FF, #1F5CFF);
+      bottom: 10%;
+      right: 10%;
+      animation: floatBlob2 14s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-black">
+
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">CSS (with Animation)</h1>
+    <pre class="bg-gray-100 p-4 rounded relative overflow-x-auto">
+<code id="cssCode">@keyframes floatBlob1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(60px, -40px) scale(1.1); }
+  50%  { transform: translate(0px, 60px) scale(0.9); }
+  75%  { transform: translate(-40px, 30px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes floatBlob2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(-50px, 50px) scale(1.15); }
+  50%  { transform: translate(30px, -30px) scale(0.95); }
+  75%  { transform: translate(-60px, -20px) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.glow-bg-animation {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.glow-bg-animation::before,
+.glow-bg-animation::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-bg-animation::before {
+  background: radial-gradient(circle, #D96EFD, #5023C9);
+  top: 10%;
+  left: 10%;
+  animation: floatBlob1 12s ease-in-out infinite;
+}
+
+.glow-bg-animation::after {
+  background: radial-gradient(circle, #00F0FF, #1F5CFF);
+  bottom: 10%;
+  right: 10%;
+  animation: floatBlob2 14s ease-in-out infinite;
+}
+</code>
+<button onclick="copyToClipboard('cssCode')" class="absolute top-2 right-2 text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+  Copy
+</button>
+    </pre>
+
+    <h1 class="text-2xl font-bold mt-8 mb-4">HTML Snippet</h1>
+    <pre class="bg-gray-100 p-4 rounded relative overflow-x-auto">
+<code id="htmlCode">&lt;div class="glow-bg-animation"&gt;
+  &lt;div class="relative z-10 text-white text-4xl font-bold h-screen flex items-center justify-center"&gt;
+    &lt;h1 class="text-black"&gt;Loading...&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code>
+<button onclick="copyToClipboard('htmlCode')" class="absolute top-2 right-2 text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+  Copy
+</button>
+    </pre>
+  </div>
+
+  <script>
+    function copyToClipboard(id) {
+      const code = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Copied!");
+      });
+    }
+  </script>
+
+</body>
+</html>
